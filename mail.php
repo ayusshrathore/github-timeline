@@ -1,12 +1,12 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
 
-function sendMail($to, $subject, $message) {
+function sendMail($to, $subject, $message)
+{
 	$mail = new PHPMailer(true);
 
 	try {
@@ -23,14 +23,14 @@ function sendMail($to, $subject, $message) {
 		$mail->Body = $message;
 		$mail->AddAddress("$to");
 
-	 	if (!$mail->Send()) {
-		    echo "Mailer Error: " . $mail->ErrorInfo;
-		    return false;
-	 	} else {
-	 		return true;
-	 	}
+		if (!$mail->Send()) {
+			echo "Mailer Error: " . $mail->ErrorInfo;
+			return false;
+		} else {
+			return true;
+		}
 	} catch (Exception $e) {
-	    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-	    return false;
+		echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		return false;
 	}
 }
